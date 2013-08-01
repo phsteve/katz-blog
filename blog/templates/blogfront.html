@@ -19,7 +19,7 @@
 			{% for blog_post in blog_posts %}
 				<div class="blog_post">
 					<div class="subject">{{blog_post.subject}}</div>
-					<div class="posted">{{blog_post.posted.strftime("%b %d, %Y %I%:%M %p")}}</div>
+					<div class="posted">{{blog_post.posted.strftime('%b %d, %Y %I:%M %p')}}</div>
 					{% if blog_post.author %}
 						<div class="author">Posted by {{blog_post.author}}</div>
 					{% endif %}

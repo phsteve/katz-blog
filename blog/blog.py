@@ -32,7 +32,7 @@ class Handler(webapp2.RequestHandler):
 class BlogPost(db.Model):
     subject = db.StringProperty(required = True)
     content = db.TextProperty(required = True)
-    posted = db.DateTimeProperty(auto_now_add = True, )
+    posted = db.DateTimeProperty(auto_now_add = True)
     author = db.StringProperty(required = False)
 
 class UserAccount(db.Model):
@@ -280,7 +280,7 @@ app = webapp2.WSGIApplication([(r'/blog/?', MainPage),
                                ('/cookietest', CookieTestHandler)],
                               debug = True)
 
-def blog():
+def main():
     util.run_wsgi_app(app)
 if __name__ == '__main__':
-    blog()
+    main()

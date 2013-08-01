@@ -7,7 +7,7 @@
 	<h1><a href = "/blog/flush">Steve's Blog</a></h1>
 	<div class="blog_post">
 		<div class="subject">{{blog_post.subject}}</div>
-		<div class="posted">{{blog_post.posted}}</div>
+		<div class="posted">{{blog_post.posted.strftime('%b %d, %Y %I:%M %p')}}</div>
         {% if blog_post.author %}
             <div class="author">Posted by {{blog_post.author}}</div>
         {% endif %}
