@@ -11,6 +11,7 @@ import time
 
 from google.appengine.ext import db
 from google.appengine.api import memcache
+from google.appengine.ext.webapp.util import run_wsgi_app
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -70,7 +71,9 @@ class MainPage(Handler):
             seconds_since_query = int(time.time()) - time_set
         else:
             seconds_since_query = 0
-        user_id = self.request.cookies.get('user_id').split('|')[0]
+        user_id = self.request.cookies.get('user_id')
+        if user_id:
+            user_id = self.request.cookies.get('user_id').split('|')[0]
         self.render("blogfront.html", blog_posts=blog_posts, seconds_since_query=seconds_since_query, user_id=user_id)
 
     def get(self):
@@ -276,3 +279,8 @@ app = webapp2.WSGIApplication([(r'/blog/?', MainPage),
                                ('/blog/flush', FlushHandler),
                                ('/cookietest', CookieTestHandler)],
                               debug = True)
+
+def blog():
+    util.run_wsgi_app(app)
+if __name__ == '__main__':
+    blog()
