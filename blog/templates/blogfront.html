@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Steve's Blog</title>
+		<link href="/stylesheets/blog.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<h1>Steve's Blog</h1>
+		<p><a href="/blog/newpost">Write a new post</a>!</p>
+		{% if user_id %}
+		<p>Logged in as {{user_id}}</p>
+		<p><a href="/blog/logout">Logout</a></p>
+		{% else %}
+		<p><a href="/blog/login">Login</a></p>
+		{% endif %}
+		<p><a href="/blog/signup">Sign up</a></p>
+		<hr>
+			{% for blog_post in blog_posts %}
+				<div class="blog_post">
+					<div class="subject">{{blog_post.subject}}</div>
+					<div class="posted">{{blog_post.posted.strftime("%b %d, %Y %I%:%M %p")}}</div>
+					{% if blog_post.author %}
+						<div class="author">Posted by {{blog_post.author}}</div>
+					{% endif %}
+					<br>
+					<br>
+					<div class="content">{{blog_post.content}}</div>
+					<hr>
+				</div>
+			{% endfor %}
+		<p>Queried {{seconds_since_query}} seconds ago</p>
+	</body>
+</html>

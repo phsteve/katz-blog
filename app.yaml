@@ -1,0 +1,50 @@
+application: katz-blog
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /stylesheets
+  static_dir: templates/css
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /blog/signup
+  script: blog.blog.app
+
+- url: /blog/success
+  script: blog.blog.app
+
+# - url: /rot13
+#   script: rot13.app
+
+# - url: /asciichan
+#   script: asciichan.asciichan.app
+
+- url: /blog
+  script: blog.blog.app
+
+- url: /blog/newpost
+  script: blog.blog.app
+
+- url: /blog/(.*)
+  script: blog.blog.app
+
+- url: /cookietest
+  script: blog.blog.app
+
+- url: /blog/flush
+  script: blog.blog.app
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.1"
+- name: jinja2
+  version: latest

@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Steve's Blog</title>
+    <link href="/stylesheets/blog.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<h1><a href = "/blog/flush">Steve's Blog</a></h1>
+	<div class="blog_post">
+		<div class="subject">{{blog_post.subject}}</div>
+		<div class="posted">{{blog_post.posted}}</div>
+        {% if blog_post.author %}
+            <div class="author">Posted by {{blog_post.author}}</div>
+        {% endif %}
+		<hr>
+		<div class="content">{{blog_post.content}}</div>
+	</div>
+	<p>Queried {{seconds_since_query}} seconds ago</p>
+</body>
+</html>
